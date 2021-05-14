@@ -2,6 +2,7 @@ import React from 'react';
 import { Note } from './entity/Note';
 
 import ReactMarkdown from 'react-markdown'
+import { Link } from 'react-router-dom';
 
 export interface NoteItemProps {
   note: Note;
@@ -11,6 +12,9 @@ export interface NoteItemProps {
 export const NoteItem:React.FunctionComponent<NoteItemProps> = ({remove, note}) => {
  return (
   <li>
-    <ReactMarkdown>{note.text}</ReactMarkdown><button onClick={remove}></button>
+    <Link to={`/note/${note.id}`}>
+      <ReactMarkdown>{note.text}</ReactMarkdown>
+    </Link>
+    <button onClick={remove}></button>
   </li>)
 }

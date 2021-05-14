@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { BrowserRouter, Link, Route, Switch} from 'react-router-dom'
 import { Note } from './entity/Note';
 import { NewNote } from './NewNote';
 import { NoteItem } from './NoteItem';
@@ -16,17 +17,24 @@ export default function App() {
   }
 
   return (
-    <div>
-      <Container backgroudColor="#AAAAAA">Notes App</Container>
-      <Container backgroudColor="#EEEEEE">
-        <NewNote addNote={addNote}></NewNote>
-        <NoteList>
-          {notes.map( note => 
-            <NoteItem key={note.id} note={note} remove={() => removeNote(note.id)}/>
-          )
-        }
-        </NoteList>
-      </Container>
-    </div>
+    <BrowserRouter>
+      <Switch>
+        <Route path="/note/:id">
+            <div>details <Link to="/">Back</Link></div>
+        </Route>
+        <Route exact path="/">
+          <Container backgroudColor="#AAAAAA">Notes App</Container>
+          <Container backgroudColor="#EEEEEE">
+          <NewNote addNote={addNote}></NewNote>
+          <NoteList>
+            {notes.map( note => 
+              <NoteItem key={note.id} note={note} remove={() => removeNote(note.id)}/>
+            )
+          }
+          </NoteList>
+          </Container>
+        </Route>
+      </Switch>
+    </BrowserRouter>
   )
 }
