@@ -8,11 +8,17 @@ export interface NewNoteProps{
 export const NewNote:React.FunctionComponent<NewNoteProps> = ({addNote}) => {  
   const [text, setText] = useState<string>("");
 
+  const createNote =  () => {
+    const note = {text: text, date: new Date()}
+    addNote(note);
+    setText("");
+  }
+
   return (
     <div>
       <div>Note</div>
-      <textarea placeholder="Note text" onChange={event => setText(event.target.value)}></textarea>
-      <button onClick={() => addNote({text: text, date: new Date()})}>Add Note</button>
+      <textarea placeholder="Note text" onChange={event => setText(event.target.value)} value={text}></textarea>
+      <button onClick={createNote}>Add Note</button>
     </div>
   )
 }
