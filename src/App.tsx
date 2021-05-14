@@ -5,16 +5,24 @@ import { NoteItem } from './NoteItem';
 import { Container, NoteList } from './StyledComponets';
 
 export default function App() {
-  const [notes, setNotes] = useState<Note[]>([{text: "test", date: new Date()}]);
+  const [notes, setNotes] = useState<Note[]>([]);
+
+  const addNote = (note: Note) => {
+    setNotes(notes.concat(note));
+  }
+
+  const removeNote = (id: String) => {
+    setNotes(notes.filter((note) => note.id !== id));
+  }
 
   return (
     <div>
       <Container backgroudColor="#AAAAAA">Notes App</Container>
       <Container backgroudColor="#EEEEEE">
-        <NewNote addNote={(note: Note) => setNotes(notes.concat(note))}></NewNote>
+        <NewNote addNote={addNote}></NewNote>
         <NoteList>
-          {notes.map((note: Note) => 
-            <NoteItem note={note}/>
+          {notes.map( note => 
+            <NoteItem key={note.id} note={note} remove={() => removeNote(note.id)}/>
           )
         }
         </NoteList>

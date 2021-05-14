@@ -9,7 +9,7 @@ export const NewNote:React.FunctionComponent<NewNoteProps> = ({addNote}) => {
   const [text, setText] = useState<string>("");
 
   const createNote =  () => {
-    const note = {text: text, date: new Date()}
+    const note = new Note(text);
     addNote(note);
     setText("");
   }
