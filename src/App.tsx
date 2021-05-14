@@ -17,24 +17,26 @@ export default function App() {
   }
 
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route path="/note/:id">
-            <div>details <Link to="/">Back</Link></div>
-        </Route>
-        <Route exact path="/">
-          <Container backgroudColor="#AAAAAA">Notes App</Container>
-          <Container backgroudColor="#EEEEEE">
-          <NewNote addNote={addNote}></NewNote>
-          <NoteList>
-            {notes.map( note => 
-              <NoteItem key={note.id} note={note} remove={() => removeNote(note.id)}/>
-            )
-          }
-          </NoteList>
-          </Container>
-        </Route>
-      </Switch>
-    </BrowserRouter>
+    <Container>
+      <Container backgroudColor="#AAAAAA">Notes App</Container>
+      <Container backgroudColor="#EEEEEE">
+        <BrowserRouter>
+          <Switch>
+            <Route path="/note/:id">
+                <div>details <Link to="/">Back</Link></div>
+            </Route>
+            <Route exact path="/">
+                <NewNote addNote={addNote}></NewNote>
+                <NoteList>
+                  {notes.map( note => 
+                    <NoteItem key={note.id} note={note} remove={() => removeNote(note.id)}/>
+                  )
+                }
+                </NoteList>
+            </Route>
+          </Switch>
+        </BrowserRouter>
+      </Container>
+    </Container>
   )
 }
