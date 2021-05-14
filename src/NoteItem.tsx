@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Note } from './entity/Note';
 
+import ReactMarkdown from 'react-markdown'
+
 export interface NoteItemProps {
-  remove: () => void
   note: Note;
+  remove: () => void
 }
 
 export const NoteItem:React.FunctionComponent<NoteItemProps> = ({remove, note}) => {
- return (<li>{note.text}<button onClick={remove}></button></li>)
+ return (
+  <li>
+    <ReactMarkdown>{note.text}</ReactMarkdown><button onClick={remove}></button>
+  </li>)
 }
