@@ -1,16 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Note } from './entity/Note';
+import { Context } from './entity/Store';
 
-export interface NewNoteProps{
-  addNote: (newNote: Note) => void
-}
-
-export const NewNote:React.FunctionComponent<NewNoteProps> = ({addNote}) => {  
+export default function Notes() {  
   const [text, setText] = useState<string>("");
+  const [state, dispatch] = useContext(Context);
 
   const createNote =  () => {
     const note = new Note(text);
-    addNote(note);
+    dispatch({type: 'ADD_NOTE', payload: note});
     setText("");
   }
 
