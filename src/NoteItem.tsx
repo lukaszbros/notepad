@@ -17,7 +17,7 @@ export const NoteItem:React.FC<NoteItemProps> = ({note}) => {
       <Link to={`/note/${note.id}`}>
         <ReactMarkdown>{note.text}</ReactMarkdown>
       </Link>
-      <button onClick={() => dispatch({type: 'REMOVE_NOTE', payload: note})}></button>
+      <button onClick={() => dispatch({type: 'REMOVE_NOTE', payload: note})}>Delete note</button>
     </li>
   )
 }

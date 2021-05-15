@@ -2,8 +2,9 @@ import React from 'react';
 import { BrowserRouter, Link, Route, Switch} from 'react-router-dom';
 import Store from './entity/Store';
 import NewNote from './NewNote';
+import NoteDetails from './NoteDetails';
 import Notes from './Notes';
-import { Container } from './StyledComponets';
+import { Container, NoteList } from './StyledComponets';
 
 const initialState = {
   notes: [],
@@ -19,11 +20,11 @@ export default function App() {
           <Switch>
             <Store>
             <Route path="/note/:id">
-                <div>details <Link to="/">Back</Link></div>
+                <NoteDetails/>
             </Route>
             <Route exact path="/">
-                <NewNote></NewNote>
-                <Notes></Notes>
+                <NewNote/>
+                <Notes/>
             </Route>
             </Store>
           </Switch>

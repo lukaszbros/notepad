@@ -1,6 +1,3 @@
-import { State } from "./State";
-
-
 export const NoteReducer = (state, action) => {
   switch (action.type) {
       case 'ADD_NOTE':

@@ -1,9 +1,7 @@
-import React, {createContext, useReducer} from "react";
-import { Note } from "./Note";
+import React, {createContext, useReducer} from 'react';
 import { NoteReducer } from './NoteReducer';
-import { State } from "./State";
 
-const initialState: State = {
+const initialState = {
     notes: []
 };
 
