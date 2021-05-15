@@ -28,7 +28,9 @@ export default function NoteDetails() {
   return (
     <div><button onClick={deleteNote}>Delete note</button><Link to='/'>Back</Link>
       {note && 
-        <div>{note.text}</div>
+        <div>{note.text}
+          <div>{note.date.toLocaleDateString()}</div> 
+        </div>     
       }
     </div>
   )
