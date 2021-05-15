@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import ReactMarkdown from 'react-markdown';
 import { Link, useHistory, useParams } from 'react-router-dom';
 import { Note } from './entity/Note';
 import { Context } from './entity/Store';
@@ -27,10 +28,14 @@ export default function NoteDetails() {
   }
 
   return (                          
-    <div><Link to='/'><ActionButton backgroundColor="#E5E5E5">Go back</ActionButton></Link> <ActionButton backgroundColor="#EC5752" onClick={deleteNote}>Delete note</ActionButton>
+    <div>
+      <Container style={{display: 'flex', justifyContent: 'space-between'}}>
+        <Link to='/'><ActionButton backgroundColor="#E5E5E5">Go back</ActionButton></Link> <ActionButton backgroundColor="#EC5752" onClick={deleteNote}>Delete note</ActionButton>
+      </Container>
       {note && 
-        <Container backgroundColor="#EAEAEA">{note.text}
-          <div>{note.date.toLocaleDateString()}</div> 
+        <Container backgroundColor="#EAEAEA">
+          <ReactMarkdown>{note.text}</ReactMarkdown>
+          {note.date.toLocaleDateString()} 
         </Container>     
       }
     </div>

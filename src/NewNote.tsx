@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Note } from './entity/Note';
 import { Context } from './entity/Store';
-import { ActionButton } from './StyledComponets';
+import { ActionButton, Container } from './StyledComponets';
 
 export default function Notes() {  
   const [text, setText] = useState<string>('');
@@ -16,8 +16,10 @@ export default function Notes() {
   return (
     <div>
       <div>Note</div>
-      <textarea placeholder="Note text" onChange={event => setText(event.target.value)} value={text}></textarea>
-      <ActionButton onClick={createNote}>Add Note</ActionButton>
+      <textarea rows={10} style={{width: '100%'}} placeholder="Note text" onChange={event => setText(event.target.value)} value={text}></textarea>
+      <Container center={true}>
+        <ActionButton onClick={createNote}>Add Note</ActionButton>
+      </Container>
     </div>
   )
 }

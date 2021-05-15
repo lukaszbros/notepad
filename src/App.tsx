@@ -4,18 +4,18 @@ import Store from './entity/Store';
 import NewNote from './NewNote';
 import NoteDetails from './NoteDetails';
 import Notes from './Notes';
-import { Container, NoteList } from './StyledComponets';
-
-const initialState = {
-  notes: [],
-  error: null
-};
+import { Container } from './StyledComponets';
 
 export default function App() {
+  const mainContentStyle = {
+    paddingLeft: '20%',
+    paddingRight: '20%'
+  };
+
   return (
-    <Container>
+    <Container style={{color: '#787878'}}>
       <Container backgroundColor="#EDEEF0">Notes App</Container>
-      <Container backgroundColor="#FCFCFC">
+      <Container backgroundColor="#FCFCFC" style={{paddingLeft: '20%', paddingRight: '20%'}}>
         <BrowserRouter>
           <Switch>
             <Store>
