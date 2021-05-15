@@ -5,7 +5,6 @@ interface ContainerProps {
 }
 
 export const Container = styled.div<ContainerProps>`
-  width: 100%;
   background-color: ${(props) => props.backgroundColor ? props.backgroundColor : 'transparen'};
   padding: 15px;
 `;
@@ -19,6 +18,7 @@ interface ActionButtonProps {
 }
 
 export const ActionButton = styled.button<ActionButtonProps>`
+  cursor: pointer;
   padding: 5px 15px;
   border: ${(props) => props.backgroundColor ? 0 : '1px solid #AAAAAA'};;
   background-color: ${(props) => props.backgroundColor ? props.backgroundColor : '#FFFFFF'};
