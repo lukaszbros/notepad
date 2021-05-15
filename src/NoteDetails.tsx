@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link, useHistory, useParams } from 'react-router-dom';
 import { Note } from './entity/Note';
 import { Context } from './entity/Store';
+import { ActionButton, Container } from './StyledComponets';
 
 interface NoteDetailsParams {
   id: string;
@@ -25,12 +26,12 @@ export default function NoteDetails() {
     }
   }
 
-  return (
-    <div><button onClick={deleteNote}>Delete note</button><Link to='/'>Back</Link>
+  return (                          
+    <div><Link to='/'><ActionButton backgroundColor="#E5E5E5">Go back</ActionButton></Link> <ActionButton backgroundColor="#EC5752" onClick={deleteNote}>Delete note</ActionButton>
       {note && 
-        <div>{note.text}
+        <Container backgroundColor="#EAEAEA">{note.text}
           <div>{note.date.toLocaleDateString()}</div> 
-        </div>     
+        </Container>     
       }
     </div>
   )

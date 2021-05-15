@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Note } from './entity/Note';
 import { Context } from './entity/Store';
+import { ActionButton } from './StyledComponets';
 
 export default function Notes() {  
   const [text, setText] = useState<string>('');
@@ -16,7 +17,7 @@ export default function Notes() {
     <div>
       <div>Note</div>
       <textarea placeholder="Note text" onChange={event => setText(event.target.value)} value={text}></textarea>
-      <button onClick={createNote}>Add Note</button>
+      <ActionButton onClick={createNote}>Add Note</ActionButton>
     </div>
   )
 }

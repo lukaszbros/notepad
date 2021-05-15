@@ -14,8 +14,8 @@ const initialState = {
 export default function App() {
   return (
     <Container>
-      <Container backgroudColor="#AAAAAA">Notes App</Container>
-      <Container backgroudColor="#EEEEEE">
+      <Container backgroundColor="#EDEEF0">Notes App</Container>
+      <Container backgroundColor="#FCFCFC">
         <BrowserRouter>
           <Switch>
             <Store>
