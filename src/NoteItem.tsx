@@ -1,17 +1,17 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Note } from './entity/Note';
 import ReactMarkdown from 'react-markdown'
 import { Link } from 'react-router-dom';
-import { Context } from './entity/Store';
 import { ActionButton, Container } from './StyledComponets';
-import { Actions } from './entity/Actions';
+import { useMutation } from '@apollo/client';
+import { deleteNoteCacheRefresh, DELETE_NOTE } from './entity/queries';
 
 export interface NoteItemProps {
   note: Note;
 }
 
 export const NoteItem:React.FC<NoteItemProps> = ({note}) => {
-  const [state, dispatch] = useContext(Context);
+  const [deleteNote] = useMutation(DELETE_NOTE, deleteNoteCacheRefresh);
   const PREVIEW_LENGTH = 365;
 
   return (
@@ -23,7 +23,7 @@ export const NoteItem:React.FC<NoteItemProps> = ({note}) => {
       </Link>
       </div>
       <Container style={{whiteSpace: 'nowrap', display: 'flex', alignItems: 'center'}}>
-        <ActionButton backgroundColor="#EC5752" color="#FCFCFC" onClick={() => dispatch({type: Actions.REMOVE_NOTE, payload: note})}>Delete note</ActionButton>
+        <ActionButton backgroundColor="#EC5752" color="#FCFCFC" onClick={() => deleteNote({variables: {id: note.id}})}>Delete note</ActionButton>
       </Container>
     </Container>
   )

@@ -1,7 +1,5 @@
-import { useQuery, gql } from '@apollo/client';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter, Route, Switch} from 'react-router-dom';
-import Store from './entity/Store';
 import NewNote from './NewNote';
 import NoteDetails from './NoteDetails';
 import Notes from './Notes';

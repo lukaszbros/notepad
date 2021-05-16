@@ -28,3 +28,48 @@ export const ADD_NOTE = gql`
     }
   }
 `;
+
+export const addNoteCacheRefresh = {
+  update(cache, { data: { addNote } }) {
+    cache.modify({
+      fields: {
+        notes(existingNotes = []) {
+          const newNoteRef = cache.writeFragment({
+            data: addNote,
+            fragment: gql`
+              fragment NewNote on Note {
+                id
+                text
+                date
+              }
+            `
+          });
+          return [newNoteRef, ...existingNotes, ];
+        }
+      }
+    });
+  }
+}
+
+export const DELETE_NOTE = gql`
+  mutation deleteNote($id: String!) {
+    deleteNote(id: $id) {
+      id
+      text
+      date
+    }
+  }
+`;
+
+export const deleteNoteCacheRefresh = {
+  update(cache, { data: { deleteNote } }) {
+    cache.modify({
+      fields: {
+        notes(existingNotes = []) {
+          const newNotes = existingNotes.filter(note => note.__ref !== `Note:${deleteNote.id}`);
+          return newNotes;
+        }
+      }
+    });
+  }
+}

@@ -1,8 +1,8 @@
-import { useQuery } from '@apollo/client';
-import React, { useEffect } from 'react';
+import { useMutation, useQuery } from '@apollo/client';
+import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import { Link, useHistory, useParams } from 'react-router-dom';
-import { GET_NOTE } from './entity/queries';
+import { deleteNoteCacheRefresh, DELETE_NOTE, GET_NOTE } from './entity/queries';
 import { ActionButton, Container } from './StyledComponets';
 
 interface NoteDetailsParams {
@@ -12,18 +12,12 @@ interface NoteDetailsParams {
 export default function NoteDetails() {
   const { id } = useParams<NoteDetailsParams>();
   const { loading, error, data } = useQuery(GET_NOTE, {variables: { id: id }});
+  const [deleteNote] = useMutation(DELETE_NOTE, deleteNoteCacheRefresh);
   const history = useHistory();
 
-  useEffect(() => {
-    //const noteDetails = state.notes.find(note => note.id === id);
-    //setNote(noteDetails)
-  });
-
-  const deleteNote = () => {
-    /*if (note) {
-      dispatch({type: Actions.REMOVE_NOTE, payload: note});
-      history.push('/');
-    }*/
+  const deleteAction = () => {
+    deleteNote({variables: {id}})
+    history.push('/');
   }
 
   if (loading) return (<Container center={true}><h1>Loading...</h1></Container>);
@@ -33,7 +27,7 @@ export default function NoteDetails() {
     <div>
       <Container style={{display: 'flex', justifyContent: 'space-between'}}>
         <Link to='/'><ActionButton backgroundColor="#E5E5E5">Go back</ActionButton></Link> 
-        <ActionButton backgroundColor="#EC5752" color="#FCFCFC" onClick={deleteNote}>Delete note</ActionButton>
+        <ActionButton backgroundColor="#EC5752" color="#FCFCFC" onClick={deleteAction}>Delete note</ActionButton>
       </Container>
       {data && 
         <Container backgroundColor="#EAEAEA">

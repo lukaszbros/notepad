@@ -1,20 +1,17 @@
-import { useMutation } from '@apollo/client';
-import React, { useContext, useState } from 'react';
-import { Actions } from './entity/Actions';
-import { Note } from './entity/Note';
-import { ADD_NOTE } from './entity/queries';
-import { Context } from './entity/Store';
+import { gql, useMutation } from '@apollo/client';
+import React, { useState } from 'react';
+import { addNoteCacheRefresh, ADD_NOTE } from './entity/queries';
 import { ActionButton, Container } from './StyledComponets';
 
 export default function Notes() {
   const [text, setText] = useState('');
-  const [addNote] = useMutation(ADD_NOTE)
+  const [addNote] = useMutation(ADD_NOTE, addNoteCacheRefresh);
 
   const createNote =  () => {
-    //const note = new Note(text);
-    //dispatch({type: Actions.ADD_NOTE, payload: note});
-    addNote({variables: {text: text}});
-    setText('');
+    if (text) {
+      addNote({variables: {text: text}});
+      setText('');
+    }
   }
 
   return (

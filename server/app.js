@@ -2,14 +2,9 @@ const express = require('express');
 const { graphqlExpress, graphiqlExpress } = require('apollo-server-express');
 const { makeExecutableSchema } = require('graphql-tools');
 const cors = require('cors');
+const { v4 } = require('uuid');
 
-const notes = [
-  {
-    id: "1",
-    text: "Aatatsuagjhaskjdhajkhfkdhkf",
-    date: "1",
-  }
-];
+const notes = [];
 
 const typeDefs = `
   type Note { 
@@ -22,7 +17,8 @@ const typeDefs = `
     note(id: String): Note
   }
   type Mutation {
-    addNote(text: String): Note
+    addNote(text: String): Note,
+    deleteNote(id: String): Note
   }
 `;
 
@@ -30,14 +26,20 @@ const resolvers = {
   Query: { 
     notes: () => notes,
     note(obj, { id }) {
-      const note = notes.find(note => note.id === id)
+      const note = notes.find(note => note.id === id);
       return note;
     }
   },
   Mutation: {
     addNote(obj, { text }) {
-      const note  = {id: 2, text, date: new Date().toDateString()}
-      notes.push(note);
+      const note  = {id: v4(), text, date: new Date().toLocaleDateString()}
+      notes.unshift(note);
+      return note;
+    },
+    deleteNote(obj, { id }) {
+      const note = notes.find(note => note.id === id);
+      const index = notes.findIndex(note => note.id === id);
+      notes.splice(index, 1);
       return note;
     }
   }
