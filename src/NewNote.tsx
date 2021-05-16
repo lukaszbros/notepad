@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { Actions } from './entity/Actions';
 import { Note } from './entity/Note';
 import { Context } from './entity/Store';
 import { ActionButton, Container } from './StyledComponets';
@@ -9,7 +10,7 @@ export default function Notes() {
 
   const createNote =  () => {
     const note = new Note(text);
-    dispatch({type: 'ADD_NOTE', payload: note});
+    dispatch({type: Actions.ADD_NOTE, payload: note});
     setText('');
   }
 

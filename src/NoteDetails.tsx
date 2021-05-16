@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { Link, useHistory, useParams } from 'react-router-dom';
+import { Actions } from './entity/Actions';
 import { Note } from './entity/Note';
 import { Context } from './entity/Store';
 import { ActionButton, Container } from './StyledComponets';
@@ -22,7 +23,7 @@ export default function NoteDetails() {
 
   const deleteNote = () => {
     if (note) {
-      dispatch({type: 'REMOVE_NOTE', payload: note});
+      dispatch({type: Actions.REMOVE_NOTE, payload: note});
       history.push('/');
     }
   }

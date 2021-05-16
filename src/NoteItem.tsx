@@ -4,6 +4,7 @@ import ReactMarkdown from 'react-markdown'
 import { Link } from 'react-router-dom';
 import { Context } from './entity/Store';
 import { ActionButton, Container } from './StyledComponets';
+import { Actions } from './entity/Actions';
 
 export interface NoteItemProps {
   note: Note;
@@ -22,7 +23,7 @@ export const NoteItem:React.FC<NoteItemProps> = ({note}) => {
       </Link>
       </div>
       <Container style={{whiteSpace: 'nowrap', display: 'flex', alignItems: 'center'}}>
-        <ActionButton backgroundColor="#EC5752" color="#FCFCFC" onClick={() => dispatch({type: 'REMOVE_NOTE', payload: note})}>Delete note</ActionButton>
+        <ActionButton backgroundColor="#EC5752" color="#FCFCFC" onClick={() => dispatch({type: Actions.REMOVE_NOTE, payload: note})}>Delete note</ActionButton>
       </Container>
     </Container>
   )

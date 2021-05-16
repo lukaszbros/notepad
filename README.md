@@ -1,4 +1,4 @@
-Simple notepad demo app with React, Webpack and TypeScript
+Simple Notepad demo app with React, Webpack and TypeScript
 
 To start, run:
 
