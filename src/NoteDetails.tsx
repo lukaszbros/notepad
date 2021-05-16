@@ -1,9 +1,8 @@
-import React, { useContext, useEffect, useState } from 'react';
+import { useQuery } from '@apollo/client';
+import React, { useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { Link, useHistory, useParams } from 'react-router-dom';
-import { Actions } from './entity/Actions';
-import { Note } from './entity/Note';
-import { Context } from './entity/Store';
+import { GET_NOTE } from './entity/queries';
 import { ActionButton, Container } from './StyledComponets';
 
 interface NoteDetailsParams {
@@ -11,22 +10,24 @@ interface NoteDetailsParams {
 }
 
 export default function NoteDetails() {
-  const [note, setNote] = useState<Note>();
   const { id } = useParams<NoteDetailsParams>();
-  const [state, dispatch] = useContext(Context);
+  const { loading, error, data } = useQuery(GET_NOTE, {variables: { id: id }});
   const history = useHistory();
 
   useEffect(() => {
-    const noteDetails = state.notes.find(note => note.id === id);
-    setNote(noteDetails)
+    //const noteDetails = state.notes.find(note => note.id === id);
+    //setNote(noteDetails)
   });
 
   const deleteNote = () => {
-    if (note) {
+    /*if (note) {
       dispatch({type: Actions.REMOVE_NOTE, payload: note});
       history.push('/');
-    }
+    }*/
   }
+
+  if (loading) return (<Container center={true}><h1>Loading...</h1></Container>);
+  if (error) return (<Container center={true}><h1>Error! {error.message}</h1></Container>);
 
   return (                          
     <div>
@@ -34,10 +35,10 @@ export default function NoteDetails() {
         <Link to='/'><ActionButton backgroundColor="#E5E5E5">Go back</ActionButton></Link> 
         <ActionButton backgroundColor="#EC5752" color="#FCFCFC" onClick={deleteNote}>Delete note</ActionButton>
       </Container>
-      {note && 
+      {data && 
         <Container backgroundColor="#EAEAEA">
-          <ReactMarkdown>{note.text}</ReactMarkdown>
-          <div style={{textAlign: 'right'}}>{note.date.toLocaleDateString()}</div>
+          <ReactMarkdown>{data.note.text}</ReactMarkdown>
+          <div style={{textAlign: 'right'}}>{data.note.date}</div>
         </Container>     
       }
     </div>

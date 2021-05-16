@@ -3,7 +3,6 @@ const { graphqlExpress, graphiqlExpress } = require('apollo-server-express');
 const { makeExecutableSchema } = require('graphql-tools');
 const cors = require('cors');
 
-// Some fake data
 const notes = [
   {
     id: "1",
@@ -12,18 +11,29 @@ const notes = [
   }
 ];
 
-// The GraphQL schema in string form
 const typeDefs = `
-  type Query { notes: [Note] }
-  type Note { id: String, text: String, date: String }
+  type Note { 
+    id: String, 
+    text: String, 
+    date: String 
+  }
+  type Query { 
+    notes: [Note],
+    note(id: String): Note
+  }
+  
 `;
 
-// The resolvers
 const resolvers = {
-  Query: { notes: () => notes },
+  Query: { 
+    notes: () => notes,
+    note(obj, { id }) {
+      const note = notes.find(note => note.id === id)
+      return note;
+    }
+  },
 };
 
-// Put together a schema
 const schema = makeExecutableSchema({
   typeDefs,
   resolvers,

@@ -19,7 +19,7 @@ export const NoteItem:React.FC<NoteItemProps> = ({note}) => {
       <div>
       <ReactMarkdown>{note.text.length > 365 ? `${note.text.substring(0, 365)}...` : note.text}</ReactMarkdown>
       <Link to={`/note/${note.id}`} style={{color: '#787878', textDecoration: 'none'}}>
-        {note.date.toLocaleDateString()}
+        {note.date}
       </Link>
       </div>
       <Container style={{whiteSpace: 'nowrap', display: 'flex', alignItems: 'center'}}>

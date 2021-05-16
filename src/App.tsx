@@ -1,5 +1,5 @@
 import { useQuery, gql } from '@apollo/client';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, Route, Switch} from 'react-router-dom';
 import Store from './entity/Store';
 import NewNote from './NewNote';
@@ -8,18 +8,7 @@ import Notes from './Notes';
 import { Container } from './StyledComponets';
 
 export default function App() {
-  const GET_NOTES = gql`
-  query notes {
-    notes {
-      id
-      text
-      date
-    }
-  }`;
-  const { loading, error, data } = useQuery(GET_NOTES);
 
-  if (loading) return (<h1>Loading...</h1>);
-  if (error) return (<h1>Error!{error.message}</h1>);
 
   return (
     <Container style={{color: '#787878'}}>
@@ -27,7 +16,6 @@ export default function App() {
       <Container backgroundColor="#FCFCFC" style={{paddingLeft: '20%', paddingRight: '20%'}}>
         <BrowserRouter>
           <Switch>
-            <Store>
             <Route path="/note/:id">
                 <NoteDetails/>
             </Route>
@@ -35,7 +23,6 @@ export default function App() {
                 <NewNote/>
                 <Notes/>
             </Route>
-            </Store>
           </Switch>
         </BrowserRouter>
       </Container>
