@@ -5,7 +5,7 @@ const initialState = {
     notes: []
 };
 
-export const Context = React.createContext<any[]>([initialState])
+export const Context = createContext<any[]>([initialState])
 
 const Store = ({children}) => {
     const [state, dispatch] = useReducer(NoteReducer, initialState);
