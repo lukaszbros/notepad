@@ -21,7 +21,9 @@ const typeDefs = `
     notes: [Note],
     note(id: String): Note
   }
-  
+  type Mutation {
+    addNote(text: String): Note
+  }
 `;
 
 const resolvers = {
@@ -32,6 +34,13 @@ const resolvers = {
       return note;
     }
   },
+  Mutation: {
+    addNote(obj, { text }) {
+      const note  = {id: 2, text, date: new Date().toDateString()}
+      notes.push(note);
+      return note;
+    }
+  }
 };
 
 const schema = makeExecutableSchema({
