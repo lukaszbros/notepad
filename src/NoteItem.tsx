@@ -1,10 +1,10 @@
 import React from 'react';
-import { Note } from './entity/Note';
 import ReactMarkdown from 'react-markdown'
 import { Link } from 'react-router-dom';
 import { ActionButton, Container } from './StyledComponets';
 import { useMutation } from '@apollo/client';
 import { deleteNoteCacheRefresh, DELETE_NOTE } from './entity/queries';
+import { Note } from './entity/Note';
 
 export interface NoteItemProps {
   note: Note;

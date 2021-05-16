@@ -44,7 +44,7 @@ export const addNoteCacheRefresh = {
               }
             `
           });
-          return [newNoteRef, ...existingNotes, ];
+          return [newNoteRef, ...existingNotes];
         }
       }
     });

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm run build & serve",
+    "start": "npm run build & serve & node ./server/app.js",
     "build": "webpack",
     "watch": "webpack -w"
   },
@@ -17,7 +17,6 @@
     "@types/react-router-dom": "^5.1.7",
     "@types/styled-components": "^5.1.9",
     "apollo-server-express": "^1.4.0",
-    "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "graphql": "^15.5.0",
