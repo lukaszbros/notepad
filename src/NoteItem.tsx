@@ -22,7 +22,7 @@ export const NoteItem:React.FC<NoteItemProps> = ({note}) => {
       </Link>
       </div>
       <Container style={{whiteSpace: 'nowrap', display: 'flex', alignItems: 'center'}}>
-        <ActionButton backgroundColor="#EC5752" onClick={() => dispatch({type: 'REMOVE_NOTE', payload: note})}>Delete note</ActionButton>
+        <ActionButton backgroundColor="#EC5752" color="#FCFCFC" onClick={() => dispatch({type: 'REMOVE_NOTE', payload: note})}>Delete note</ActionButton>
       </Container>
     </Container>
   )

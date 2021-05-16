@@ -21,12 +21,15 @@ export const ListItem = styled.li`
 `;
 
 interface ActionButtonProps {
+  color?: string;
   backgroundColor?: string;
 }
 
 export const ActionButton = styled.button<ActionButtonProps>`
   cursor: pointer;
+  color: ${(props) => props.color ? props.color : '#787878'};
   padding: 5px 15px;
-  border: ${(props) => props.backgroundColor ? 0 : '1px solid #AAAAAA'};;
+  border-radius: 3px;
+  border: ${(props) => props.backgroundColor ? 0 : '1px solid #AAAAAA'};
   background-color: ${(props) => props.backgroundColor ? props.backgroundColor : '#FFFFFF'};
 `

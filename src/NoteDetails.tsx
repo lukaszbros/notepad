@@ -30,12 +30,13 @@ export default function NoteDetails() {
   return (                          
     <div>
       <Container style={{display: 'flex', justifyContent: 'space-between'}}>
-        <Link to='/'><ActionButton backgroundColor="#E5E5E5">Go back</ActionButton></Link> <ActionButton backgroundColor="#EC5752" onClick={deleteNote}>Delete note</ActionButton>
+        <Link to='/'><ActionButton backgroundColor="#E5E5E5">Go back</ActionButton></Link> 
+        <ActionButton backgroundColor="#EC5752" color="#FCFCFC" onClick={deleteNote}>Delete note</ActionButton>
       </Container>
       {note && 
         <Container backgroundColor="#EAEAEA">
           <ReactMarkdown>{note.text}</ReactMarkdown>
-          {note.date.toLocaleDateString()} 
+          <div style={{textAlign: 'right'}}>{note.date.toLocaleDateString()}</div>
         </Container>     
       }
     </div>

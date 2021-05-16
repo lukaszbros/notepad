@@ -15,7 +15,7 @@ export default function Notes() {
 
   return (
     <div>
-      <div>Note</div>
+      <p><b>Note</b></p>
       <textarea rows={10} style={{width: '100%'}} placeholder="Note text" onChange={event => setText(event.target.value)} value={text}></textarea>
       <Container center={true}>
         <ActionButton onClick={createNote}>Add Note</ActionButton>
