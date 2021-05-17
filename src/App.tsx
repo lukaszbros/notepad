@@ -7,11 +7,6 @@ import Notes from './Notes';
 import { Container } from './StyledComponets';
 
 export default function App() {
-  const mainContentStyle = {
-    paddingLeft: '20%',
-    paddingRight: '20%'
-  };
-
   return (
     <Container style={{color: '#787878'}}>
       <Container backgroundColor="#EDEEF0">Notes App</Container>

@@ -10,8 +10,10 @@ export default function Notes() {
 
   const createNote =  () => {
     const note = new Note(text);
-    dispatch({type: Actions.ADD_NOTE, payload: note});
-    setText('');
+    if (text) {
+      dispatch({type: Actions.ADD_NOTE, payload: note});
+      setText('');
+    }
   }
 
   return (
